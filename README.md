@@ -1,0 +1,2 @@
+# DefaultBundle
+Default PHPixie Bundle
