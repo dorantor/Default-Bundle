@@ -33,14 +33,19 @@ abstract class Builder
         return $this->instance('routeResolver');
     }
     
-    public function temlateLocator()
+    public function templateLocator()
     {
-        return $this->instance('temlateLocator');
+        return $this->instance('templateLocator');
     }
     
     public function filesystemRoot()
     {
         return $this->instance('filesystemRoot');
+    }
+    
+    public function assetsRoot()
+    {
+        return $this->instance('assetsRoot');
     }
     
     public function webRoot()
@@ -58,15 +63,6 @@ abstract class Builder
         return $this->instances[$name];
     }
     
-    protected function buildConfig()
-    {
-        $assetsDirectory = $this->filesystemRoot()->path('assets/');
-        return $this->components->config()->directory(
-            $assetsDirectory,
-            'config'
-        );
-    }
-    
     protected function buildHttpProcessor()
     {
         return null;
@@ -77,9 +73,28 @@ abstract class Builder
         return null;
     }
     
+    protected function buildConfig()
+    {
+        $assetsRoot = $this->assetsRoot();
+        if($assetsRoot === null) {
+            return null;
+        }
+        
+        return $this->components->config()->directory(
+            $assetsRoot->path(),
+            'config'
+        );
+    }
+    
+    
     protected function buildRouteResolver()
     {
-        $configData = $this->config()->slice('routeResolver');
+        $config = $this->config();
+        if($config === null) {
+            return null;
+        }
+        
+        $configData = $config->slice('routeResolver');
         if($configData->get('type') === null) {
             return null;
         }
@@ -87,37 +102,67 @@ abstract class Builder
         return $this->components->route()->buildResolver($configData);
     }
     
-    protected function buildTemlateLocator()
+    protected function buildTemplateLocator()
     {
-        $configData = $this->config()->slice('templateLocator');
+        $config = $this->config();
+        if($config === null) {
+            return null;
+        }
+        
+        $configData = $config->slice('templateLocator');
         if($configData->get('type') === null) {
             return null;
         }
         
         return $this->components->filesystem()->buildLocator(
             $configData,
-            $this->filesystemRoot()
+            $this->assetsRoot()
         );
     }
     
     protected function buildFilesystemRoot()
     {
+        $directory = $this->getRootDirectory();
+        
+        if($directory === null) {
+            return null;
+        }
+        
         return $this->components->filesystem()->root(
-            $this->getRootDirectory()
+            $directory
         );
     }
     
     protected function buildWebRoot()
     {
-        $webDirectory = $this->filesystemRoot()->path('web/');
-        if(!is_dir($webDirectory)) {
+        return $this->buildPathRoot('web');
+    }
+    
+    protected function buildAssetsRoot()
+    {
+        return $this->buildPathRoot('assets');
+    }
+    
+    protected function buildPathRoot($path)
+    {
+        $filesystemRoot = $this->filesystemRoot();
+        if($filesystemRoot === null) {
+            return null;
+        }
+        
+        $directory = $this->filesystemRoot()->path($path);
+        
+        if(!is_dir($directory)) {
             return null;
         }
         
         return $this->components->filesystem()->root(
-            $webDirectory
+            $directory
         );
     }
     
-    abstract protected function getRootDirectory();
+    protected function getRootDirectory()
+    {
+        return null;
+    }
 }
