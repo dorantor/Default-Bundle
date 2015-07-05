@@ -80,6 +80,38 @@ class BuilderTest extends \PHPixie\Test\Testcase
     }
     
     /**
+     * @covers ::ormConfig
+     * @covers ::<protected>
+     */
+    public function testOrmConfig()
+    {
+        $this->ormConfigTest();
+        $this->ormConfigTest(true);
+    }
+    
+    protected function ormConfigTest($configExists = false)
+    {
+        $this->builderMock = $this->builderMock(array(
+            'config'
+        ));
+        
+        $config = $configExists ? $this->getSliceData() : null;
+        $this->method($this->builderMock, 'config', $config, array());
+        
+        if($configExists) {
+            $ormConfig = $this->getSliceData();
+            $this->method($config, 'slice', $ormConfig, array('orm'));
+            
+        }else{
+            $ormConfig = null;
+        }
+        
+        for($i=0; $i<2; $i++) {
+            $this->assertSame($ormConfig, $this->builderMock->ormConfig());
+        }
+    }
+    
+    /**
      * @covers ::routeResolver
      * @covers ::<protected>
      */

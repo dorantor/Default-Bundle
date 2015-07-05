@@ -5,7 +5,7 @@ namespace PHPixie;
 use PHPixie\Bundles\Bundle\Provides;
 
 abstract class DefaultBundle implements Provides\HTTPProcessor,
-    Provides\ORMWrappers,
+    Provides\ORM,
     Provides\RouteResolver,
     Provides\TemplateLocator,
     Provides\WebRoot
@@ -22,11 +22,6 @@ abstract class DefaultBundle implements Provides\HTTPProcessor,
         return $this->builder->httpProcessor();
     }
     
-    public function ormWrappers()
-    {
-        return $this->builder->ormWrappers();
-    }
-    
     public function routeResolver()
     {
         return $this->builder->routeResolver();
@@ -35,6 +30,16 @@ abstract class DefaultBundle implements Provides\HTTPProcessor,
     public function templateLocator()
     {
         return $this->builder->templateLocator();
+    }
+    
+    public function ormConfig()
+    {
+        return $this->builder->ormConfig();
+    }
+        
+    public function ormWrappers()
+    {
+        return $this->builder->ormWrappers();
     }
     
     public function webRoot()

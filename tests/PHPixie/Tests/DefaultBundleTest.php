@@ -42,15 +42,6 @@ class DefaultBundleTest extends \PHPixie\Test\Testcase
     }
     
     /**
-     * @covers ::ormWrappers
-     * @covers ::<protected>
-     */
-    public function testOrmWrappers()
-    {
-        $this->builderMethodTest('ormWrappers', '\PHPixie\ORM\Wrappers');
-    }
-    
-    /**
      * @covers ::routeResolver
      * @covers ::<protected>
      */
@@ -75,6 +66,24 @@ class DefaultBundleTest extends \PHPixie\Test\Testcase
     public function testWebRoot()
     {
         $this->builderMethodTest('webRoot', '\PHPixie\Filesystem\Root');
+    }
+    
+    /**
+     * @covers ::ormConfig
+     * @covers ::<protected>
+     */
+    public function testOrmConfig()
+    {
+        $this->builderMethodTest('ormConfig', '\PHPixie\Slice\Data');
+    }
+    
+    /**
+     * @covers ::ormWrappers
+     * @covers ::<protected>
+     */
+    public function testOrmWrappers()
+    {
+        $this->builderMethodTest('ormWrappers', '\PHPixie\ORM\Wrappers');
     }
     
     protected function builderMethodTest($method, $class)

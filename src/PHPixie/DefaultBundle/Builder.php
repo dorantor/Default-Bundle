@@ -23,11 +23,6 @@ abstract class Builder
         return $this->instance('httpProcessor');
     }
     
-    public function ormWrappers()
-    {
-        return $this->instance('ormWrappers');
-    }
-    
     public function routeResolver()
     {
         return $this->instance('routeResolver');
@@ -36,6 +31,16 @@ abstract class Builder
     public function templateLocator()
     {
         return $this->instance('templateLocator');
+    }
+    
+    public function ormConfig()
+    {
+        return $this->instance('ormConfig');
+    }
+    
+    public function ormWrappers()
+    {
+        return $this->instance('ormWrappers');
     }
     
     public function filesystemRoot()
@@ -64,11 +69,6 @@ abstract class Builder
     }
     
     protected function buildHttpProcessor()
-    {
-        return null;
-    }
-    
-    protected function buildOrmWrappers()
     {
         return null;
     }
@@ -131,6 +131,21 @@ abstract class Builder
         return $this->components->filesystem()->root(
             $directory
         );
+    }
+    
+    protected function buildOrmConfig()
+    {
+        $config = $this->config();
+        if($config === null) {
+            return null;
+        }
+        
+        return $config->slice('orm');
+    }
+    
+    protected function buildOrmWrappers()
+    {
+        return null;
     }
     
     protected function buildWebRoot()
