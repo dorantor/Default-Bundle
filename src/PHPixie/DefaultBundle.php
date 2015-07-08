@@ -12,9 +12,9 @@ abstract class DefaultBundle implements Provides\HTTPProcessor,
 {
     protected $builder;
     
-    public function __construct($bundleFrameworkBuilder)
+    public function __construct($frameworkBuilder)
     {
-        $this->builder = $this->buildBuilder($bundleFrameworkBuilder);
+        $this->builder = $this->buildBuilder($frameworkBuilder);
     }
     
     public function httpProcessor()
@@ -47,5 +47,5 @@ abstract class DefaultBundle implements Provides\HTTPProcessor,
         return $this->builder->webRoot();
     }
     
-    abstract protected function buildBuilder($bundleFrameworkBuilder);
+    abstract protected function buildBuilder($frameworkBuilder);
 }

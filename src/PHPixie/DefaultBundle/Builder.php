@@ -4,13 +4,23 @@ namespace PHPixie\DefaultBundle;
 
 abstract class Builder
 {
-    protected $components;
+    protected $frameworkBuilder;
     
     protected $instances = array();
     
-    public function __construct($components)
+    public function __construct($frameworkBuilder)
     {
-        $this->components = $components;
+        $this->frameworkBuilder = $frameworkBuilder;
+    }
+    
+    public function frameworkBuilder()
+    {
+        return $this->frameworkBuilder;
+    }
+    
+    public function components()
+    {
+        return $this->frameworkBuilder->components();
     }
     
     public function config()
@@ -80,7 +90,7 @@ abstract class Builder
             return null;
         }
         
-        return $this->components->config()->directory(
+        return $this->components()->config()->directory(
             $assetsRoot->path(),
             'config'
         );
@@ -99,7 +109,7 @@ abstract class Builder
             return null;
         }
         
-        return $this->components->route()->buildResolver($configData);
+        return $this->components()->route()->buildResolver($configData);
     }
     
     protected function buildTemplateLocator()
@@ -114,7 +124,7 @@ abstract class Builder
             return null;
         }
         
-        return $this->components->filesystem()->buildLocator(
+        return $this->components()->filesystem()->buildLocator(
             $configData,
             $this->assetsRoot()
         );
@@ -128,7 +138,7 @@ abstract class Builder
             return null;
         }
         
-        return $this->components->filesystem()->root(
+        return $this->components()->filesystem()->root(
             $directory
         );
     }
@@ -171,7 +181,7 @@ abstract class Builder
             return null;
         }
         
-        return $this->components->filesystem()->root(
+        return $this->components()->filesystem()->root(
             $directory
         );
     }

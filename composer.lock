@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPixie/Bundle-Framework.git",
-                "reference": "c0760157294fb96635bf1a59e7c1a34ae7ad5073"
+                "reference": "8092f6d50ee31b70a14ec418fe5d9d1209afa3c3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPixie/Bundle-Framework/zipball/c0760157294fb96635bf1a59e7c1a34ae7ad5073",
-                "reference": "c0760157294fb96635bf1a59e7c1a34ae7ad5073",
+                "url": "https://api.github.com/repos/PHPixie/Bundle-Framework/zipball/8092f6d50ee31b70a14ec418fe5d9d1209afa3c3",
+                "reference": "8092f6d50ee31b70a14ec418fe5d9d1209afa3c3",
                 "shasum": ""
             },
             "require": {
@@ -67,7 +67,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-06-24 15:49:22"
+            "time": "2015-07-07 16:08:43"
         },
         {
             "name": "phpixie/bundles",
@@ -75,12 +75,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPixie/Bundles.git",
-                "reference": "330e625ba046b055afa7e853e76fa3b2f7f6a310"
+                "reference": "1a063c4837a5466c3731a309974d7546e9f586c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPixie/Bundles/zipball/330e625ba046b055afa7e853e76fa3b2f7f6a310",
-                "reference": "330e625ba046b055afa7e853e76fa3b2f7f6a310",
+                "url": "https://api.github.com/repos/PHPixie/Bundles/zipball/1a063c4837a5466c3731a309974d7546e9f586c9",
+                "reference": "1a063c4837a5466c3731a309974d7546e9f586c9",
                 "shasum": ""
             },
             "require": {
@@ -125,7 +125,7 @@
                 "http",
                 "psr-7"
             ],
-            "time": "2015-07-03 12:22:27"
+            "time": "2015-07-07 16:21:01"
         },
         {
             "name": "phpixie/config",
@@ -237,12 +237,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPixie/Debug.git",
-                "reference": "6d44fc346e1041fca3d599de79f791cd58de49fa"
+                "reference": "8423e91bbfe7854de6594aaa2734bcb6ddd0c4ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPixie/Debug/zipball/6d44fc346e1041fca3d599de79f791cd58de49fa",
-                "reference": "6d44fc346e1041fca3d599de79f791cd58de49fa",
+                "url": "https://api.github.com/repos/PHPixie/Debug/zipball/8423e91bbfe7854de6594aaa2734bcb6ddd0c4ac",
+                "reference": "8423e91bbfe7854de6594aaa2734bcb6ddd0c4ac",
                 "shasum": ""
             },
             "require-dev": {
@@ -279,7 +279,7 @@
                 "log",
                 "trace"
             ],
-            "time": "2015-05-10 10:48:46"
+            "time": "2015-07-08 11:42:07"
         },
         {
             "name": "phpixie/filesystem",
@@ -338,12 +338,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPixie/Framework.git",
-                "reference": "5417fe2969dedf91ce282091f77f1db789ec1eee"
+                "reference": "af45ef23d7edaf0fb3c95d68f96ffa6e2b71754d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPixie/Framework/zipball/5417fe2969dedf91ce282091f77f1db789ec1eee",
-                "reference": "5417fe2969dedf91ce282091f77f1db789ec1eee",
+                "url": "https://api.github.com/repos/PHPixie/Framework/zipball/af45ef23d7edaf0fb3c95d68f96ffa6e2b71754d",
+                "reference": "af45ef23d7edaf0fb3c95d68f96ffa6e2b71754d",
                 "shasum": ""
             },
             "require": {
@@ -391,7 +391,7 @@
             "keywords": [
                 "processors"
             ],
-            "time": "2015-07-03 17:34:37"
+            "time": "2015-07-07 16:08:01"
         },
         {
             "name": "phpixie/http",

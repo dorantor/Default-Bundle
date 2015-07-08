@@ -7,13 +7,19 @@ namespace PHPixie\Tests\DefaultBundle;
  */
 class BuilderTest extends \PHPixie\Test\Testcase
 {
-    protected $components;
+    protected $frameworkBuilder;
     
     protected $builderMock;
     
+    protected $components;
+    
     public function setUp()
     {
-        $this->components  = $this->quickMock('\PHPixie\Framework\Components');
+        $this->frameworkBuilder  = $this->quickMock('\PHPixie\Framework\Builder');
+        
+        $this->components = $this->quickMock('\PHPixie\Framework\Components');
+        $this->method($this->frameworkBuilder, 'components', $this->components, array());
+        
         $this->builderMock = $this->builderMock();
     }
     
@@ -25,6 +31,24 @@ class BuilderTest extends \PHPixie\Test\Testcase
     public function testConstruct()
     {
         
+    }
+    
+    /**
+     * @covers ::frameworkBuilder
+     * @covers ::<protected>
+     */
+    public function testFrameworkBuilder()
+    {
+        $this->assertSame($this->frameworkBuilder, $this->builderMock->frameworkBuilder());
+    }
+    
+    /**
+     * @covers ::components
+     * @covers ::<protected>
+     */
+    public function testComponents()
+    {
+        $this->assertSame($this->components, $this->builderMock->components());
     }
     
     /**
@@ -342,7 +366,7 @@ class BuilderTest extends \PHPixie\Test\Testcase
         return $this->getMock(
             '\PHPixie\DefaultBundle\Builder',
             $methods,
-            array($this->components)
+            array($this->frameworkBuilder)
         );
     }
 }

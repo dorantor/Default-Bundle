@@ -10,7 +10,7 @@ class DefaultBundleTest extends \PHPixie\Test\Testcase
     protected $bundleClass  = '\PHPixie\DefaultBundle';
     protected $builderClass = '\PHPixie\DefaultBundle\Builder';
     
-    protected $components;
+    protected $frameworkBuilder;
     
     protected $bundle;
     
@@ -18,9 +18,9 @@ class DefaultBundleTest extends \PHPixie\Test\Testcase
     
     public function setUp()
     {
-        $this->components = $this->quickMock('\PHPixie\Framework\Components');
-        $this->builder = $this->quickMock($this->builderClass);
-        $this->bundle = $this->bundleMock(array('name'));
+        $this->frameworkBuilder = $this->quickMock('\PHPixie\Framework\Builder');
+        $this->builder          = $this->quickMock($this->builderClass);
+        $this->bundle           = $this->bundleMock(array('name'));
     }
     
     /**
@@ -104,11 +104,11 @@ class DefaultBundleTest extends \PHPixie\Test\Testcase
         
         
         $this->method($bundle, 'buildBuilder', $this->builder, array(
-            $this->components
+            $this->frameworkBuilder
         ), 0);
         
         $bundle->__construct(
-            $this->components
+            $this->frameworkBuilder
         );
         
         return $bundle;
