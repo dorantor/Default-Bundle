@@ -63,6 +63,11 @@ abstract class Builder
         return $this->instance('assetsRoot');
     }
     
+    public function authRepositories()
+    {
+        return $this->instance('authRepositories');
+    }
+    
     public function webRoot()
     {
         return $this->instance('webRoot');
@@ -154,6 +159,11 @@ abstract class Builder
     }
     
     protected function buildOrmWrappers()
+    {
+        return null;
+    }
+    
+    protected function buildAuthRepositories()
     {
         return null;
     }

@@ -8,6 +8,7 @@ abstract class DefaultBundle implements Provides\HTTPProcessor,
     Provides\ORM,
     Provides\RouteResolver,
     Provides\TemplateLocator,
+    Provides\AuthRepositories,
     Provides\WebRoot
 {
     protected $builder;
@@ -40,6 +41,11 @@ abstract class DefaultBundle implements Provides\HTTPProcessor,
     public function ormWrappers()
     {
         return $this->builder->ormWrappers();
+    }
+        
+    public function authRepositories()
+    {
+        return $this->builder->authRepositories();
     }
     
     public function webRoot()
