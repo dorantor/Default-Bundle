@@ -8,7 +8,7 @@ abstract class DefaultBundle implements Provides\HTTPProcessor,
     Provides\ORM,
     Provides\RouteResolver,
     Provides\TemplateLocator,
-    Provides\AuthRepositories,
+    Provides\Auth,
     Provides\WebRoot
 {
     protected $builder;
