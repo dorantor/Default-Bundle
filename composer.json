@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "phpixie/framework": "~3.0",
+        "phpixie/bundle-framework": "~3.0",
         "phpixie/bundles": "~3.0"
     },
     "require-dev": {

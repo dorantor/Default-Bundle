@@ -28,6 +28,11 @@ abstract class Builder
         return $this->instance('config');
     }
     
+    public function bundleConfig()
+    {
+        return $this->instance('bundleConfig');
+    }
+    
     public function httpProcessor()
     {
         return $this->instance('httpProcessor');
@@ -90,6 +95,13 @@ abstract class Builder
     
     protected function buildConfig()
     {
+        return $this->components()->bundles()->config(
+            $this->bundleName()
+        );
+    }
+    
+    protected function buildBundleConfig()
+    {
         $assetsRoot = $this->assetsRoot();
         if($assetsRoot === null) {
             return null;
@@ -104,7 +116,7 @@ abstract class Builder
     
     protected function buildRouteResolver()
     {
-        $config = $this->config();
+        $config = $this->bundleConfig();
         if($config === null) {
             return null;
         }
@@ -119,7 +131,8 @@ abstract class Builder
     
     protected function buildTemplateLocator()
     {
-        $config = $this->config();
+        $config = $this->bundleConfig();
+        
         if($config === null) {
             return null;
         }
@@ -150,7 +163,7 @@ abstract class Builder
     
     protected function buildOrmConfig()
     {
-        $config = $this->config();
+        $config = $this->bundleConfig();
         if($config === null) {
             return null;
         }
@@ -200,4 +213,6 @@ abstract class Builder
     {
         return null;
     }
+    
+    abstract public function bundleName();
 }

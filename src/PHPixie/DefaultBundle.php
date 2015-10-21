@@ -18,6 +18,11 @@ abstract class DefaultBundle implements Provides\HTTPProcessor,
         $this->builder = $this->buildBuilder($frameworkBuilder);
     }
     
+    public function name()
+    {
+        return $this->builder->bundleName();
+    }
+        
     public function httpProcessor()
     {
         return $this->builder->httpProcessor();
@@ -36,6 +41,11 @@ abstract class DefaultBundle implements Provides\HTTPProcessor,
     public function ormConfig()
     {
         return $this->builder->ormConfig();
+    }
+    
+    public function config()
+    {
+        return $this->builder->config();
     }
         
     public function ormWrappers()

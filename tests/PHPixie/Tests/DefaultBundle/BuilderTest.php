@@ -17,7 +17,7 @@ class BuilderTest extends \PHPixie\Test\Testcase
     {
         $this->frameworkBuilder  = $this->quickMock('\PHPixie\Framework\Builder');
         
-        $this->components = $this->quickMock('\PHPixie\Framework\Components');
+        $this->components = $this->quickMock('\PHPixie\BundleFramework\Components');
         $this->method($this->frameworkBuilder, 'components', $this->components, array());
         
         $this->builderMock = $this->builderMock();
@@ -70,16 +70,33 @@ class BuilderTest extends \PHPixie\Test\Testcase
     }
     
     /**
+     * @covers ::bundleConfig
+     * @covers ::<protected>
+     */
+    public function testBundleConfig()
+    {
+        $this->bundleConfigTest();
+        $this->bundleConfigTest(true);
+    }
+    
+    /**
      * @covers ::config
      * @covers ::<protected>
      */
     public function testConfig()
     {
-        $this->configTest();
-        $this->configTest(true);
+        $builderMock = $this->builderMock();
+        $this->method($builderMock, 'bundleName', 'pixie', array(), 0);
+        
+        $bundles = $this->prepareComponent('bundles');
+        
+        $configData = $this->getSliceData();
+        $this->method($bundles, 'config', $configData, array('pixie'), 0);
+        
+        $this->assertSame($configData, $builderMock->config());
     }
     
-    protected function configTest($assetsExists = false)
+    protected function bundleConfigTest($assetsExists = false)
     {
         $this->builderMock = $this->builderMock(array(
             'assetsRoot'
@@ -99,7 +116,7 @@ class BuilderTest extends \PHPixie\Test\Testcase
         }
         
         for($i=0; $i<2; $i++) {
-            $this->assertSame($configData, $this->builderMock->config());
+            $this->assertSame($configData, $this->builderMock->bundleConfig());
         }
     }
     
@@ -116,11 +133,11 @@ class BuilderTest extends \PHPixie\Test\Testcase
     protected function ormConfigTest($configExists = false)
     {
         $this->builderMock = $this->builderMock(array(
-            'config'
+            'bundleConfig'
         ));
         
         $config = $configExists ? $this->getSliceData() : null;
-        $this->method($this->builderMock, 'config', $config, array());
+        $this->method($this->builderMock, 'bundleConfig', $config, array());
         
         if($configExists) {
             $ormConfig = $this->getSliceData();
@@ -150,11 +167,11 @@ class BuilderTest extends \PHPixie\Test\Testcase
     {
         $this->builderMock = $this->builderMock(array(
             'getRootDirectory',
-            'config'
+            'bundleConfig'
         ));
         
         $config = $configExists ? $this->getSliceData() : null;
-        $this->method($this->builderMock, 'config', $config, array());
+        $this->method($this->builderMock, 'bundleConfig', $config, array());
         
         $resolver = null;
         
@@ -191,13 +208,13 @@ class BuilderTest extends \PHPixie\Test\Testcase
     protected function templateLocatorTest($configExists = false, $locatorExists = false)
     {
         $this->builderMock = $this->builderMock(array(
-            'config',
+            'bundleConfig',
             'assetsRoot',
         ));
         
         
         $config = $configExists ? $this->getSliceData() : null;
-        $this->method($this->builderMock, 'config', $config, array());
+        $this->method($this->builderMock, 'bundleConfig', $config, array());
         
         $locator = null;
         
@@ -361,8 +378,9 @@ class BuilderTest extends \PHPixie\Test\Testcase
         return $this->quickMock('\PHPixie\Filesystem\Root');
     }
     
-    protected function builderMock($methods = null)
+    protected function builderMock($methods = array())
     {
+        $methods[]= 'bundleName';
         return $this->getMock(
             '\PHPixie\DefaultBundle\Builder',
             $methods,

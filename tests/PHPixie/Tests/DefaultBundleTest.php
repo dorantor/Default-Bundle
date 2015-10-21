@@ -19,8 +19,8 @@ class DefaultBundleTest extends \PHPixie\Test\Testcase
     public function setUp()
     {
         $this->frameworkBuilder = $this->quickMock('\PHPixie\Framework\Builder');
-        $this->builder          = $this->quickMock($this->builderClass);
-        $this->bundle           = $this->bundleMock(array('name'));
+        $this->builder          = $this->builderMock();
+        $this->bundle           = $this->bundleMock();
     }
     
     /**
@@ -31,6 +31,17 @@ class DefaultBundleTest extends \PHPixie\Test\Testcase
     {
         
     }
+    
+    /**
+     * @covers ::name
+     * @covers ::<protected>
+     */
+    public function testName()
+    {
+        $this->method($this->builder, 'bundleName', 'pixie', array(), 0);
+        $this->assertSame('pixie', $this->bundle->name());
+    }
+    
     
     /**
      * @covers ::httpProcessor
@@ -78,6 +89,15 @@ class DefaultBundleTest extends \PHPixie\Test\Testcase
     }
     
     /**
+     * @covers ::config
+     * @covers ::<protected>
+     */
+    public function testConfig()
+    {
+        $this->builderMethodTest('config', '\PHPixie\Slice\Data');
+    }
+    
+    /**
      * @covers ::ormWrappers
      * @covers ::<protected>
      */
@@ -112,5 +132,10 @@ class DefaultBundleTest extends \PHPixie\Test\Testcase
         );
         
         return $bundle;
+    }
+    
+    protected function builderMock()
+    {
+        return $this->abstractMock($this->builderClass);
     }
 }
