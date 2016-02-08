@@ -2,7 +2,12 @@
 
 namespace PHPixie\DefaultBundle\Processor\HTTP;
 
-abstract class Actions extends \PHPixie\HTTPProcessors\Processor\Actions\Attribute
+use PHPixie\HTTPProcessors\Processor\Actions\Attribute;
+
+/**
+ * Shortcut to the base actions attribute processor
+ */
+abstract class Actions extends Attribute
 {
 
 }

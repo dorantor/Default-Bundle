@@ -2,7 +2,12 @@
 
 namespace PHPixie\DefaultBundle\Processor\HTTP;
 
-abstract class Builder extends \PHPixie\HTTPProcessors\Processor\Dispatcher\Builder\Attribute
+use \PHPixie\HTTPProcessors\Processor\Dispatcher\Builder\Attribute;
+
+/**
+ * Shortcut to the base attribute builder processor
+ */
+abstract class Builder extends Attribute
 {
 
 }
