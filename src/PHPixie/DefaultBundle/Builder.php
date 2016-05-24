@@ -26,6 +26,7 @@ abstract class Builder
     public function __construct($frameworkBuilder)
     {
         $this->frameworkBuilder = $frameworkBuilder;
+        $this->container();
     }
 
     /**
@@ -150,6 +151,15 @@ abstract class Builder
     }
 
     /**
+     * DI container
+     * @return Container|null
+     */
+    public function container()
+    {
+        return $this->instance('container');
+    }
+
+    /**
      * Returns a single instance by name
      * @param string $name
      * @return mixed
@@ -160,7 +170,7 @@ abstract class Builder
             $method = 'build'.ucfirst($name);
             $this->instances[$name] = $this->$method();
         }
-        
+
         return $this->instances[$name];
     }
 
@@ -191,7 +201,7 @@ abstract class Builder
         if($assetsRoot === null) {
             return null;
         }
-        
+
         return $this->components()->config()->directory(
             $assetsRoot->path(),
             'config'
@@ -207,12 +217,12 @@ abstract class Builder
         if($config === null) {
             return null;
         }
-        
+
         $configData = $config->slice('routeResolver');
         if($configData->get('type') === null) {
             return null;
         }
-        
+
         return $this->components()->route()->buildResolver($configData);
     }
 
@@ -222,16 +232,16 @@ abstract class Builder
     protected function buildTemplateLocator()
     {
         $config = $this->bundleConfig();
-        
+
         if($config === null) {
             return null;
         }
-        
+
         $configData = $config->slice('templateLocator');
         if($configData->get('type') === null) {
             return null;
         }
-        
+
         return $this->components()->filesystem()->buildLocator(
             $configData,
             $this->assetsRoot()
@@ -244,11 +254,11 @@ abstract class Builder
     protected function buildFilesystemRoot()
     {
         $directory = $this->getRootDirectory();
-        
+
         if($directory === null) {
             return null;
         }
-        
+
         return $this->components()->filesystem()->root(
             $directory
         );
@@ -263,7 +273,7 @@ abstract class Builder
         if($config === null) {
             return null;
         }
-        
+
         return $config->slice('orm');
     }
 
@@ -308,13 +318,13 @@ abstract class Builder
         if($filesystemRoot === null) {
             return null;
         }
-        
+
         $directory = $this->filesystemRoot()->path($path);
-        
+
         if(!is_dir($directory)) {
             return null;
         }
-        
+
         return $this->components()->filesystem()->root(
             $directory
         );
@@ -324,6 +334,14 @@ abstract class Builder
      * @return \PHPixie\Filesystem\Root|null
      */
     protected function getRootDirectory()
+    {
+        return null;
+    }
+
+    /**
+     * @return Container|null
+     */
+    protected function buildContainer()
     {
         return null;
     }
