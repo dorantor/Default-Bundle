@@ -15,6 +15,7 @@ abstract class DefaultBundle implements Provides\HTTPProcessor,
     Provides\RouteResolver,
     Provides\TemplateLocator,
     Provides\Auth,
+    Provides\Console,
     Provides\WebRoot
 {
     /**
@@ -103,6 +104,15 @@ abstract class DefaultBundle implements Provides\HTTPProcessor,
     public function authRepositories()
     {
         return $this->builder->authRepositories();
+    }
+        
+    /**
+     * Console command provider
+     * @return Console\Registry\Provider|null
+     */
+    public function consoleProvider()
+    {
+        return $this->builder->consoleProvider();
     }
 
     /**

@@ -142,6 +142,15 @@ abstract class Builder
     }
 
     /**
+     * Console command provider
+     * @return \PHPixie\Console\Registry\Provider|null
+     */
+    public function consoleProvider()
+    {
+        return $this->instance('consoleProvider');
+    }
+
+    /**
      * Bundle web directory
      * @return \PHPixie\Filesystem\Root|null
      */
@@ -178,6 +187,14 @@ abstract class Builder
      * @return \PHPixie\Processors\Processor|null
      */
     protected function buildHttpProcessor()
+    {
+        return null;
+    }
+
+    /**
+     * @return \PHPixie\Console\Registry\Provider|null
+     */
+    protected function buildConsoleProvider()
     {
         return null;
     }
