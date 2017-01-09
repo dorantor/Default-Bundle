@@ -22,35 +22,23 @@ class ORM extends \PHPixie\ORM\Wrappers\Implementation
     public function __construct($builder)
     {
         $this->builder = $builder;
-    }
 
-    public function databaseRepositories()
-    {
-        return array_merge(
+        $this->databaseRepositories = array_merge(
             $this->databaseRepositories,
             array_keys($this->repositoryMap)
         );
-    }
 
-    public function databaseQueries()
-    {
-        return array_merge(
+        $this->databaseQueries = array_merge(
             $this->databaseQueries,
             array_keys($this->queryMap)
         );
-    }
 
-    public function databaseEntities()
-    {
-        return array_merge(
+        $this->databaseEntities = array_merge(
             $this->databaseEntities,
             array_keys($this->entityMap)
         );
-    }
 
-    public function embeddedEntities()
-    {
-        return array_merge(
+        $this->embeddedEntities = array_merge(
             $this->embeddedEntities,
             array_keys($this->embeddedMap)
         );
