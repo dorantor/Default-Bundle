@@ -33,7 +33,7 @@ abstract class Console extends \PHPixie\Console\Registry\Provider\Implementation
     {
         if(isset($this->classMap[$name])) {
             $class = $this->classMap[$name];
-            return new $class($this->builder);
+            return new $class($config, $this->builder);
         }
 
         return parent::buildCommand($name, $config);
