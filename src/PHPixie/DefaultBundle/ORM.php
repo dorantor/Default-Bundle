@@ -87,7 +87,7 @@ class ORM extends \PHPixie\ORM\Wrappers\Implementation
             return null;
         }
 
-        $class = $classMap[$item];
+        $class = $classMap[$name];
         return new $class($item, $this->builder);
     }
 }
