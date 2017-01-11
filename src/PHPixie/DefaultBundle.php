@@ -125,6 +125,15 @@ abstract class DefaultBundle implements Provides\HTTPProcessor,
     }
 
     /**
+     * Bundle Builder
+     * @return Builder
+     */
+    public function builder()
+    {
+        return $this->builder;
+    }
+
+    /**
      * Build bundle builder
      * @param BundleFramework\Builder $frameworkBuilder
      * @return Builder
