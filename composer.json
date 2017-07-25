@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "phpixie/bundle-framework": "~3.0",
+        "phpixie/bundle-framework": "dev-dorantor@dev",
         "phpixie/bundles": "~3.0",
         "phpixie/di": "~3.0",
         "phpixie/bundles": "~3.0",
